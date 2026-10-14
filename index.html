@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyCheck - Explore cities and discover current weather conditions.">
+
+    <title>SkyCheck | Weather & City Explorer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript File -->
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Navigation -->
+        <header class="navbar">
+            <a href="#" class="logo" aria-label="SkyCheck home">
+                <span class="logo-icon">☁</span>
+                <span>Sky<span class="logo-highlight">Check</span></span>
+            </a>
+
+            <span class="nav-label">
+                <span class="status-dot"></span>
+                LIVE WEATHER
+            </span>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <section class="hero">
+                <p class="eyebrow">YOUR PERSONAL WEATHER GUIDE</p>
+
+                <h1>
+                    Discover the weather,
+                    <span>anywhere.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Explore cities around the world and discover
+                    what the sky has in store for you.
+                </p>
+            </section>
+
+            <!-- City Search -->
+            <section class="search-section" aria-label="Search for a city">
+
+                <form id="weatherForm" class="search-form">
+
+                    <label for="cityInput" class="visually-hidden">
+                        Enter city name
+                    </label>
+
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+
+                    <input
+                        type="text"
+                        id="cityInput"
+                        name="city"
+                        placeholder="Search a city... e.g. Islamabad"
+                        autocomplete="off"
+                        maxlength="100"
+                        required
+                    >
+
+                    <button type="submit" id="searchButton">
+                        <span id="buttonText">Explore</span>
+                        <span aria-hidden="true"> →</span>
+                    </button>
+
+                </form>
+
+                <p class="search-hint">
+                    Try searching for London, Tokyo, Paris or Islamabad
+                </p>
+
+            </section>
+
+            <!-- Weather Results -->
+            <section
+                id="weatherResult"
+                class="weather-result"
+                aria-live="polite"
+                aria-atomic="true"
+            >
+
+                <!-- INITIAL STATE -->
+                <div id="initialState" class="state-card initial-state">
+
+                    <div class="state-icon">🌍</div>
+
+                    <h2>Ready to explore?</h2>
+
+                    <p>Search for a city to see the weather.</p>
+
+                    <div class="initial-decoration">
+                        <span>☀️</span>
+                        <span>☁️</span>
+                        <span>🌧️</span>
+                    </div>
+
+                </div>
+
+                <!-- LOADING STATE -->
+                <div
+                    id="loadingState"
+                    class="state-card loading-state hidden"
+                    role="status"
+                >
+
+                    <div class="spinner"></div>
+
+                    <h2>Checking the skies...</h2>
+
+                    <p>Fetching the latest weather information.</p>
+
+                </div>
+
+                <!-- SUCCESS STATE -->
+                <article
+                    id="successState"
+                    class="weather-card hidden"
+                    aria-label="Current weather"
+                >
+
+                    <div class="weather-card-header">
+                        <div>
+                            <p class="card-label">CURRENT WEATHER</p>
+                            <h2 id="cityName">City Name</h2>
+                            <p id="countryName" class="country-name">
+                                Country
+                            </p>
+                        </div>
+
+                        <div id="weatherIcon" class="weather-icon"
+                             aria-hidden="true">☀️</div>
+                    </div>
+
+                    <div class="temperature-section">
+                        <p id="weatherCondition" class="weather-condition">
+                            Clear sky
+                        </p>
+
+                        <div class="temperature-row">
+                            <span id="temperature">--</span>
+                            <span class="degree-symbol">°C</span>
+                        </div>
+
+                        <p id="feelsLike" class="feels-like">
+                            Current temperature
+                        </p>
+                    </div>
+
+                    <div class="weather-divider"></div>
+
+                    <div class="weather-details">
+
+                        <div class="detail-item">
+                            <span class="detail-icon">💨</span>
+                            <div>
+                                <p>Wind speed</p>
+                                <h3 id="windSpeed">-- km/h</h3>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-icon">🧭</span>
+                            <div>
+                                <p>Wind direction</p>
+                                <h3 id="windDirection">--</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <p id="lastUpdated" class="last-updated"></p>
+
+                </article>
+
+                <!-- ERROR STATE -->
+                <div
+                    id="errorState"
+                    class="state-card error-state hidden"
+                    role="alert"
+                >
+
+                    <div id="errorIcon" class="state-icon">⚠️</div>
+
+                    <h2 id="errorTitle">Unable to get weather</h2>
+
+                    <p id="errorMessage">
+                        Something went wrong. Please try again.
+                    </p>
+
+                    <button type="button" id="retryButton" class="retry-button">
+                        Try again ↻
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>Made with <span>♥</span> for curious explorers.</p>
+                <p>Weather data powered by Open-Meteo.</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
